@@ -7,13 +7,8 @@ export default function App() {
   return (
     <Router>
     <div className="App">
-        {/* <Switch> */}
         <LoginPage/>
         <Home/>
-          {/* <Route path="/login" component={LoginPage} />
-          <Route path="/home" component={Home} /> */}
-        {/* </Switch> */}
-      <Home/>
     </div>
      </Router>
   )
