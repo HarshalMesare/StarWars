@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,10 +12,12 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import './Navbar.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -27,6 +29,10 @@ export default function Navbar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleNavigateToLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -56,7 +62,7 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" className="title">
-            Photos
+         Press here
           </Typography>
           {auth && (
             <div>
@@ -85,8 +91,9 @@ export default function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
+                <MenuItem onClick={handleClose}>People</MenuItem>
+                <MenuItem  onClick={handleNavigateToLogin}>Go to Login</MenuItem >
               </Menu>
             </div>
           )}
