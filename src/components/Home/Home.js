@@ -1,12 +1,11 @@
-import React from 'react'
-import Navbar from './components/Login-Page/Navbar/Navbar'
-// import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import Navbar from '../Navbar/Navbar';
 
 export default function Home() {
   // const dispatch = useDispatch();
 
   // async function handleAddPost() {
-  //     dispatch(postsActions.setLoading(true));
+  //     dispatch(peopleActions.setLoading(true));
   //     try {
   //       const params = {
   //         title: 'Test Post',
@@ -16,14 +15,14 @@ export default function Home() {
   //       const response = await axios.post('http https://swapi.dev/api/people/1/', params);
   //       if (response.status === 201) {
   //         alert('Post successfully created!');
-  //         dispatch(postsActions.setPosts([...posts, formData]));
+  //         dispatch(peopleActions.setpeople([...people, formData]));
   //         handleClose();
   //       }
-  //       dispatch(postsActions.setLoading(false));
+  //       dispatch(peopleActions.setLoading(false));
 
   //     } catch (exception) {
   //       console.log(exception);
-  //       dispatch(postsActions.setLoading(false));
+  //       dispatch(peopleActions.setLoading(false));
   //     }
   //   }
   return (
