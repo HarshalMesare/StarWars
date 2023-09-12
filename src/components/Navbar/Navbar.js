@@ -11,7 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import './Navbar.module.css';
+import './Navbar.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
@@ -34,6 +34,10 @@ export default function Navbar() {
   const handleNavigateToLogin = () => {
     navigate('/login');
   };
+  
+  const handleNavigateToPeople = () => {
+    navigate('/people');
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -62,7 +66,7 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" className="title">
-         Press here
+            Press here
           </Typography>
           {auth && (
             <div>
@@ -91,9 +95,9 @@ export default function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-                <MenuItem onClick={handleClose}>People</MenuItem>
-                <MenuItem  onClick={handleNavigateToLogin}>Go to Login</MenuItem >
+                <MenuItem onClick={handleNavigateToPeople}>People</MenuItem>
+                <MenuItem onClick={handleClose}>Films </MenuItem>
+                <MenuItem onClick={handleNavigateToLogin}>Go to Login</MenuItem >
               </Menu>
             </div>
           )}

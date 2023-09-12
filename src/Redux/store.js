@@ -1,4 +1,4 @@
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import rootReducer from './root-reducer';
 import { configureStore } from '@reduxjs/toolkit';
 

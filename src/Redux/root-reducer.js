@@ -1,11 +1,12 @@
-import { combineReducers } from '@reduxjs/toolkit';
-
-import usersReducer from './slices/peopleslices';
+import { combineReducers } from 'redux';
+import usersReducer from './slices/user.slices';
 import postReducer from './slices/peopleslices';
+import  filmsReducer from './slices/Films.slice';
 
 const rootReducer = combineReducers({
   userData: usersReducer,
-  peopleState: postReducer
+  postState: postReducer,
+  filmsState: filmsReducer
 });
 
 export default rootReducer;         

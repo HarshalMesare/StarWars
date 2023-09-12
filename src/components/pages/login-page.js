@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './login-page.module.css';
+import styles from './login-page.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
