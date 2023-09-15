@@ -38,6 +38,9 @@ export default function Navbar() {
   const handleNavigateToPeople = () => {
     navigate('/people');
   }
+  const handleNavigateToFilms = () => {
+    navigate('/Films');
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -96,7 +99,7 @@ export default function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleNavigateToPeople}>People</MenuItem>
-                <MenuItem onClick={handleClose}>Films </MenuItem>
+                <MenuItem onClick={handleNavigateToFilms}>Films </MenuItem>
                 <MenuItem onClick={handleNavigateToLogin}>Go to Login</MenuItem >
               </Menu>
             </div>

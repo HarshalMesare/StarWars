@@ -10,10 +10,11 @@ function Films() {
   const { Films, loading } = useSelector((state) => state.filmsState);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const storage = localStorage;
 
   useEffect(() => {
-    loadFilms(1);
-  }, []);
+    loadFilms(currentPage);
+  }, [currentPage]);
 
   async function loadFilms(_pageNumber) {
     const response = await dispatch(fetchFilms(_pageNumber));
@@ -22,27 +23,20 @@ function Films() {
   }
 
   const handlePrevious = () => {
-
     if (currentPage <= 1) {
       return;
     }
-
     const _page = currentPage - 1;
     setCurrentPage(_page);
-    loadFilms(_page);
   };
 
   const handleNext = () => {
-
     if (currentPage >= totalPages) {
       return;
     }
-
     const _page = currentPage + 1;
     setCurrentPage(_page);
-    loadFilms(_page);
   };
-
   return (
     <div className={styles.pageContainer}>
       <Navbar />

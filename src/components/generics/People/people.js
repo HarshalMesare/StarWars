@@ -5,19 +5,22 @@ import styles from './people.module.scss';
 import { BarLoader } from 'react-spinners';
 import { fetchPeople } from '../../../Services/starServices';
 
+
 function People() {
 
   const dispatch = useDispatch();
   const { people, loading } = useSelector((state) => state.postState);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const storage = localStorage;
 
   useEffect(() => {
-    loadPeople(1);
+    const storedPage = storage.getItem('currentPage') || 1;
+    loadPeople(storedPage);
   }, []);
 
   async function loadPeople(_pageNumber) {
-    const response = dispatch(fetchPeople(_pageNumber));
+    const response = await dispatch(fetchPeople(_pageNumber));
     const _totalPages = Math.ceil(response.count / 10);
     setTotalPages(_totalPages);
   }
@@ -25,23 +28,21 @@ function People() {
   console.log(people);
 
   const handlePrevious = () => {
-
     if (currentPage <= 1) {
       return;
     }
-
     const _page = currentPage - 1;
+    storage.setItem('currentPage', _page); 
     setCurrentPage(_page);
     loadPeople(_page);
   };
-
   const handleNext = () => {
-
     if (currentPage >= totalPages) {
       return;
     }
-
+  
     const _page = currentPage + 1;
+    storage.setItem('currentPage', _page); 
     setCurrentPage(_page);
     loadPeople(_page);
   };
