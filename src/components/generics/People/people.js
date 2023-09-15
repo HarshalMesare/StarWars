@@ -4,6 +4,7 @@ import Navbar from '../../Navbar/Navbar';
 import styles from './people.module.scss';
 import { BarLoader } from 'react-spinners';
 import { fetchPeople } from '../../../Services/starServices';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 function People() {
@@ -12,12 +13,16 @@ function People() {
   const { people, loading } = useSelector((state) => state.postState);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const storage = localStorage;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const storedPage = storage.getItem('currentPage') || 1;
-    loadPeople(storedPage);
-  }, []);
+    const searchParams = new URLSearchParams(location.search);
+    const page = parseInt(searchParams.get('page')) || 1;
+
+    setCurrentPage(page);
+    loadPeople(page);
+  }, [location.search]);
 
   async function loadPeople(_pageNumber) {
     const response = await dispatch(fetchPeople(_pageNumber));
@@ -25,26 +30,26 @@ function People() {
     setTotalPages(_totalPages);
   }
 
-  console.log(people);
+  // console.log(people);
 
   const handlePrevious = () => {
     if (currentPage <= 1) {
       return;
     }
+
     const _page = currentPage - 1;
-    storage.setItem('currentPage', _page); 
     setCurrentPage(_page);
-    loadPeople(_page);
+    navigate(`/people?page=${_page}`);
   };
+  
   const handleNext = () => {
     if (currentPage >= totalPages) {
       return;
     }
-  
+
     const _page = currentPage + 1;
-    storage.setItem('currentPage', _page); 
     setCurrentPage(_page);
-    loadPeople(_page);
+    navigate(`/people?page=${_page}`);
   };
 
   return (
